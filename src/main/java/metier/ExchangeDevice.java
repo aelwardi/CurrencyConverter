@@ -58,4 +58,16 @@ public class ExchangeDevice implements IExchanger {
 		return list;
 	}
 
+	@Override
+	public double getExchangeCurrency(double fromCurrency, double toCurrency, double amount) {
+		try {
+			if(fromCurrency != toCurrency) {
+				amount = amount * (toCurrency / fromCurrency);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return amount;
+	}
+
 }
