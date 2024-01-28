@@ -14,20 +14,20 @@
 					<form action="exchange.php" method="post">
 						<div class="form-group">
 							<label class="control-label">Amount: </label>
-							<input class="form-control" type="text" name="amount" required="required" />
+							<input value="${model.amount}" class="form-control" type="text" name="amount" required="required" />
 						</div>
 						<div class="form-group">
 							<label class="control-label">From: </label>
-							<select class="form-control" name="currency">
-								<c:forEach items="${model}" var="item">
+							<select name="fromCurrency" class="form-control" name="currency">
+								<c:forEach  items="${list}" var="item">
 									<option value="${item.exchangeByUs}">${item.currency}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label class="control-label">To: </label>
-							<select class="form-control" name="currency">
-								<c:forEach items="${model}" var="item">
+							<select name="toCurrency" class="form-control" name="currency">
+								<c:forEach items="${list}" var="item">
 									<option value="${item.exchangeByUs}">${item.currency}</option>
 								</c:forEach>
 							</select>
@@ -38,7 +38,7 @@
 					</form>
 					<div>
 						<label>Result: </label>
-						<label>0.0</label>
+						<label>${model.result}</label>
 					</div>
 				</div>
 			</div>

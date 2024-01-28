@@ -27,13 +27,24 @@ public class ControleurServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = req.getServletPath();
+		ModelCurrency model = new ModelCurrency();
 		if(path.equals("/index.php")) {
 			List<CurrencyByUS> list = exchanger.getxchanges();
 			list.add(new CurrencyByUS("USD", 1));
-			req.setAttribute("model", list);
+			req.setAttribute("list", list);
+			req.setAttribute("model", model);
 			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
-		}else if(path.equals("/exchange.php")) {
-			
+		}else if(path.equals("/exchange.php") && (req.getMethod().equals("POST"))) {
+			double fromCurrency = Double.parseDouble(req.getParameter("fromCurrency"));
+			double toCurrency = Double.parseDouble(req.getParameter("toCurrency"));
+			double amount = Double.parseDouble(req.getParameter("amount"));
+			double result = exchanger.getExchangeCurrency(fromCurrency, toCurrency, amount);
+			model.setFromCurrency(fromCurrency);
+			model.setToCurrency(toCurrency);
+			model.setAmount(amount);
+			model.setResult(result);
+			req.setAttribute("model", model);
+			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
 		} else {
 			resp.sendError(Response.SC_NOT_FOUND);
 		}
