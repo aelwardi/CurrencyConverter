@@ -5,7 +5,7 @@ import java.util.List;
 public class SimpleTest {
 
 	public static void main(String[] args) {
-		IExchanger exchanger = new ExchangeDevice();
+		IExchanger exchanger = new ExchangeDevise();
 		List<CurrencyByUS> byUSs = exchanger.getxchanges();
 		
 		for(CurrencyByUS currencyByUS: byUSs) {

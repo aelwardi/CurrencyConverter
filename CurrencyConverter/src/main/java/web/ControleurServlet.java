@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Response;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import metier.CurrencyByUS;
-import metier.ExchangeDevice;
+import metier.ExchangeDevise;
 import metier.IExchanger;
 
 @WebServlet(name = "currency", urlPatterns = "*.php")
@@ -21,7 +23,9 @@ public class ControleurServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		exchanger = new ExchangeDevice();
+		//exchanger = new ExchangeDevise();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		exchanger = (IExchanger) context.getBean("mt");
 	}
 	
 	@Override
