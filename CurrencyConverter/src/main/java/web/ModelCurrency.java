@@ -1,24 +1,33 @@
 package web;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import metier.CurrencyByUS;
+
 public class ModelCurrency {
 	//Attributes
 	private double fromCurrency;
 	private double toCurrency;
 	private double Amount;
 	private double result;
+	private List<CurrencyByUS> list = new ArrayList<CurrencyByUS>();
 	
 	// Constructors
 	public ModelCurrency() {
 		super();
 	}
-	public ModelCurrency(double fromCurrency, double toCurrency, double amount, double result) {
+	public ModelCurrency(double fromCurrency, double toCurrency, double amount, double result,
+			List<CurrencyByUS> list) {
 		super();
 		this.fromCurrency = fromCurrency;
 		this.toCurrency = toCurrency;
 		Amount = amount;
 		this.result = result;
+		this.list = list;
 	}
-	
+
+
 	// Setters & Getters
 	public double getFromCurrency() {
 		return fromCurrency;
@@ -43,6 +52,12 @@ public class ModelCurrency {
 	}
 	public void setResult(double result) {
 		this.result = result;
+	}
+	public List<CurrencyByUS> getList() {
+		return list;
+	}
+	public void setList(List<CurrencyByUS> list) {
+		this.list = list;
 	}
 	
 

@@ -31,7 +31,7 @@ public class ControleurServlet extends HttpServlet {
 		if(path.equals("/index.php")) {
 			List<CurrencyByUS> list = exchanger.getxchanges();
 			list.add(new CurrencyByUS("USD", 1));
-			req.setAttribute("list", list);
+			model.setList(list);
 			req.setAttribute("model", model);
 			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
 		}else if(path.equals("/exchange.php") && (req.getMethod().equals("POST"))) {
@@ -43,6 +43,9 @@ public class ControleurServlet extends HttpServlet {
 			model.setToCurrency(toCurrency);
 			model.setAmount(amount);
 			model.setResult(result);
+			List<CurrencyByUS> list = exchanger.getxchanges();
+			list.add(new CurrencyByUS("USD", 1));
+			model.setList(list);
 			req.setAttribute("model", model);
 			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
 		} else {

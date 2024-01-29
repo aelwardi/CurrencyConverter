@@ -19,27 +19,28 @@
 						<div class="form-group">
 							<label class="control-label">From: </label>
 							<select name="fromCurrency" class="form-control" name="currency">
-								<c:forEach  items="${list}" var="item">
-									<option value="${item.exchangeByUs}">${item.currency}</option>
+								<c:forEach  items="${model.list}" var="item">
+									<option value="${item.exchangeByUs}" <c:if test="${item.exchangeByUs eq model.fromCurrency}">selected</c:if>>${item.currency}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label class="control-label">To: </label>
 							<select name="toCurrency" class="form-control" name="currency">
-								<c:forEach items="${list}" var="item">
-									<option value="${item.exchangeByUs}">${item.currency}</option>
+								<c:forEach items="${model.list}" var="item">
+									<option value="${item.exchangeByUs}" <c:if test="${item.exchangeByUs eq model.toCurrency}">selected</c:if>>${item.currency}</option>
+									<%-- <option value="${item.exchangeByUs}">${item.currency}</option> --%>
 								</c:forEach>
 							</select>
+						</div>
+						<div>
+							<label>Result: </label>
+							<label>${model.result}</label>
 						</div>
 						<div>
 							<button class="btn btn-primary" type="submit">Change</button>
 						</div>
 					</form>
-					<div>
-						<label>Result: </label>
-						<label>${model.result}</label>
-					</div>
 				</div>
 			</div>
 		</div>
