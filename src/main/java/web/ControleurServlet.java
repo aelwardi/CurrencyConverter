@@ -35,7 +35,7 @@ public class ControleurServlet extends HttpServlet {
 		if(path.equals("/index.php")) {
 			model.setList(exchanger.getxchanges());
 			req.setAttribute("model", model);
-			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
+			req.getRequestDispatcher("views/indexs.jsp").forward(req, resp);
 		}else if(path.equals("/exchange.php") && (req.getMethod().equals("POST"))) {
 			double fromCurrency = Double.parseDouble(req.getParameter("fromCurrency"));
 			double toCurrency = Double.parseDouble(req.getParameter("toCurrency"));
@@ -47,7 +47,7 @@ public class ControleurServlet extends HttpServlet {
 			model.setResult(result);
 			model.setList(exchanger.getxchanges());
 			req.setAttribute("model", model);
-			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
+			req.getRequestDispatcher("views/indexs.jsp").forward(req, resp);
 		} else {
 			resp.sendError(Response.SC_NOT_FOUND);
 		}
