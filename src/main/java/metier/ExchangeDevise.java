@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-public class ExchangeDevice implements IExchanger {
+public class ExchangeDevise implements IExchanger {
 	
 	public List<CurrencyByUS> getxchanges() {
 		// Une liste pour qu'on puisse enregister les taux de change par US de base
@@ -68,6 +68,10 @@ public class ExchangeDevice implements IExchanger {
 			e.printStackTrace();
 		}
 		return amount;
+	}
+	
+	private void init() {
+		System.out.println("Initialization ......");
 	}
 
 }

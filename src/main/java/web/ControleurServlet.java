@@ -25,7 +25,7 @@ public class ControleurServlet extends HttpServlet {
 	public void init() throws ServletException {
 		//exchanger = new ExchangeDevise();
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-		exchanger = (IExchanger) context.getBean("mt");
+		exchanger = (IExchanger) context.getBean("exchange");
 	}
 	
 	@Override
@@ -33,9 +33,7 @@ public class ControleurServlet extends HttpServlet {
 		String path = req.getServletPath();
 		ModelCurrency model = new ModelCurrency();
 		if(path.equals("/index.php")) {
-			List<CurrencyByUS> list = exchanger.getxchanges();
-			list.add(new CurrencyByUS("USD", 1));
-			model.setList(list);
+			model.setList(exchanger.getxchanges());
 			req.setAttribute("model", model);
 			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
 		}else if(path.equals("/exchange.php") && (req.getMethod().equals("POST"))) {
@@ -47,9 +45,7 @@ public class ControleurServlet extends HttpServlet {
 			model.setToCurrency(toCurrency);
 			model.setAmount(amount);
 			model.setResult(result);
-			List<CurrencyByUS> list = exchanger.getxchanges();
-			list.add(new CurrencyByUS("USD", 1));
-			model.setList(list);
+			model.setList(exchanger.getxchanges());
 			req.setAttribute("model", model);
 			req.getRequestDispatcher("views/index.jsp").forward(req, resp);
 		} else {
